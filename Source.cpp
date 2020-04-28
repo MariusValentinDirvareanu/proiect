@@ -1,17 +1,17 @@
-#include <iostream> 
-#include "sqlite3.h" 
+#include <iostream>
+#include <sqlite3.h>
 #include <fstream>
 #include <filesystem>
 
 using namespace std;
 
-
 // Printare informatii extrase din baza de date
-static int callback(void* data, int argc, char** argv, char** azColName)
+static int callback(void *data, int argc, char **argv, char **azColName)
 {
-	cout << (const char*)data << ":\n";
+	cout << (const char *)data << ":\n";
 
-	for (int i = 0; i < argc; ++i) {
+	for (int i = 0; i < argc; ++i)
+	{
 		cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << '\n';
 	}
 
@@ -19,12 +19,13 @@ static int callback(void* data, int argc, char** argv, char** azColName)
 	return 0;
 }
 
-int creareTabel(int& exit, sqlite3* DB, string queryCreare)
+int creareTabel(int &exit, sqlite3 *DB, string queryCreare)
 {
 	// Apelare query de creare baza de date
-	char* messaggeError;
+	char *messaggeError;
 	exit = sqlite3_exec(DB, queryCreare.c_str(), NULL, 0, &messaggeError);
-	if (exit != SQLITE_OK) {
+	if (exit != SQLITE_OK)
+	{
 		cerr << "Error Create Table\n";
 		sqlite3_free(messaggeError);
 		return -1;
@@ -35,14 +36,15 @@ int creareTabel(int& exit, sqlite3* DB, string queryCreare)
 	return 0;
 }
 
-int selectareTabel(int exit, sqlite3* DB)
+int selectareTabel(int exit, sqlite3 *DB)
 {
 	string data = "CALLBACK FUNCTION";
 
 	// Query SELECT din baza de date
 	string querySelectare = "SELECT * FROM PERSON;";
 	// Verificare deschidere baza de date
-	if (exit) {
+	if (exit)
+	{
 		cerr << "Error open DB " << sqlite3_errmsg(DB) << '\n';
 		return -1;
 	}
@@ -50,24 +52,25 @@ int selectareTabel(int exit, sqlite3* DB)
 		cout << "Opened Database Successfully!" << '\n';
 
 	// Apelare Query
-	int rc = sqlite3_exec(DB, querySelectare.c_str(), callback, (void*)data.c_str(), NULL);
-
+	int rc = sqlite3_exec(DB, querySelectare.c_str(), callback, (void *)data.c_str(), NULL);
 
 	// Afisare eraore sau succes
 	if (rc != SQLITE_OK)
 		cerr << "Error SELECT" << '\n';
-	else {
+	else
+	{
 		cout << "Operation OK!" << '\n';
 	}
 	return 0;
 }
 
-void inserare(int& exit, sqlite3* DB, std::string& queryInserare)
+void inserare(int &exit, sqlite3 *DB, std::string &queryInserare)
 {
-	char* messaggeError;
+	char *messaggeError;
 
 	exit = sqlite3_exec(DB, queryInserare.c_str(), NULL, 0, &messaggeError);
-	if (exit != SQLITE_OK) {
+	if (exit != SQLITE_OK)
+	{
 		std::cerr << "Error Insert" << std::endl;
 		sqlite3_free(messaggeError);
 	}
@@ -75,11 +78,12 @@ void inserare(int& exit, sqlite3* DB, std::string& queryInserare)
 		std::cout << "Records created Successfully!" << std::endl;
 }
 
-void stergere(int& exit, sqlite3* DB, std::string& queryDelete)
+void stergere(int &exit, sqlite3 *DB, std::string &queryDelete)
 {
-	char* messaggeError;
+	char *messaggeError;
 	exit = sqlite3_exec(DB, queryDelete.c_str(), NULL, 0, &messaggeError);
-	if (exit != SQLITE_OK) {
+	if (exit != SQLITE_OK)
+	{
 		std::cerr << "Error DELETE" << std::endl;
 		sqlite3_free(messaggeError);
 	}
@@ -89,41 +93,41 @@ void stergere(int& exit, sqlite3* DB, std::string& queryDelete)
 
 int main()
 {
-	sqlite3* DB;
+	sqlite3 *DB;
 	unsigned ok = 0;
 	string numeFisier = "stock.db";
 	int exit = 0;
 	// Deschidere fisier baza de date pentru scriere si citire
 	exit = sqlite3_open(numeFisier.c_str(), &DB);
-	
 
 	// Se verifica daca fisierul are marimea 0
 	// Daca marimea este 0 se insereaza tabelul
-	if (filesystem::file_size(numeFisier) == 0) {
+	if (filesystem::file_size(numeFisier) == 0)
+	{
 		string magazine = "CREATE TABLE magazine ("
-			"id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"numemagazin	TEXT NOT NULL UNIQUE,"
-			"judet	TEXT NOT NULL,"
-			"oras	TEXT,"
-			"comuna	TEXT,"
-			"strada	TEXT,"
-			"numar	TEXT,"
-			"bloc	TEXT,"
-			"domeniu	TEXT NOT NULL);"
-			"CREATE TABLE stock ("
-			"id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"denumire	TEXT NOT NULL,"
-			"unitati	INTEGER NOT NULL,"
-			"kg	REAL,"
-			"litri	REAL,"
-			"pretunitate	REAL NOT NULL);"
-			"CREATE TABLE COMENZI("
-			"ID	INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"IDMAGAZIN	INTEGER	NOT NULL,"
-			"IDPRODUS	INTEGER	NOT NULL,"
-			"UNITATI	INTEGER	NOT NULL,"
-			"FOREIGN KEY('idprodus') REFERENCES 'stock'('id'),"
-			"FOREIGN KEY('idmagazin') REFERENCES 'magazine'('id'));";
+						  "id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+						  "numemagazin	TEXT NOT NULL UNIQUE,"
+						  "judet	TEXT NOT NULL,"
+						  "oras	TEXT,"
+						  "comuna	TEXT,"
+						  "strada	TEXT,"
+						  "numar	TEXT,"
+						  "bloc	TEXT,"
+						  "domeniu	TEXT NOT NULL);"
+						  "CREATE TABLE stock ("
+						  "id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+						  "denumire	TEXT NOT NULL,"
+						  "unitati	INTEGER NOT NULL,"
+						  "kg	REAL,"
+						  "litri	REAL,"
+						  "pretunitate	REAL NOT NULL);"
+						  "CREATE TABLE COMENZI("
+						  "ID	INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT UNIQUE,"
+						  "IDMAGAZIN	INTEGER	NOT NULL,"
+						  "IDPRODUS	INTEGER	NOT NULL,"
+						  "UNITATI	INTEGER	NOT NULL,"
+						  "FOREIGN KEY('idprodus') REFERENCES 'stock'('id'),"
+						  "FOREIGN KEY('idmagazin') REFERENCES 'magazine'('id'));";
 
 		creareTabel(exit, DB, magazine);
 	}
