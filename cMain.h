@@ -15,7 +15,6 @@ class cMain : public wxFrame
 public:
 	cMain();
 	~cMain();
-	//void creareTabel(std::vector<std::string> den);
 	void creareTabelDB(int& exit, std::string queryCreare);
 	void inserareDB(int& exit, std::string& queryInserare);
 	void stergereDB(int& exit, std::string& queryDelete);
@@ -24,11 +23,9 @@ public:
 
 public:
 	wxButton* m_btn1 = nullptr;
-	wxListCtrl* m_item_list = nullptr;
-	wxBoxSizer* sizer = nullptr;
+	wxButton* m_btn2 = nullptr;
+	wxButton* m_btn3 = nullptr;
 	wxPanel* mainPane = nullptr;
-	//wxListItem coloane[100];
-	//std::vector<std::string> denumiri;
 	sqlite3* DB;
 	unsigned ok = 0;
 	std::string numeFisier = "persoane.db";
@@ -44,6 +41,18 @@ public:
 	wxTextCtrl* m_txt4 = nullptr;
 	wxStaticText* txt5 = nullptr;
 	wxTextCtrl* m_txt5 = nullptr;
+	wxStaticText* txt6 = nullptr;
+	wxTextCtrl* m_txt6 = nullptr;
+	wxStaticText* txt7 = nullptr;
+	wxTextCtrl* m_txt7 = nullptr;
+	wxStaticText* txt8 = nullptr;
+	wxTextCtrl* m_txt8 = nullptr;
+	wxStaticText* txt9 = nullptr;
+	wxTextCtrl* m_txt9 = nullptr;
+	wxStaticText* txt10 = nullptr;
+	wxTextCtrl* m_txt10 = nullptr;
+	wxStaticText* txt11 = nullptr;
+	wxTextCtrl* m_txt11 = nullptr;
 
 	wxDECLARE_EVENT_TABLE();
 };

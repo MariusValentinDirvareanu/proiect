@@ -11,46 +11,49 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Test", wxPoint(10, 10),wxSize(800, 
 {
     
     mainPane = new wxPanel(this);
-    //sizer = new wxBoxSizer(wxHORIZONTAL);
-
-    m_btn1 = new wxButton(mainPane, 1001, "Click me!", wxPoint(10, 10), wxSize(150, 50));
-	txt1 = new wxStaticText(mainPane, wxID_ANY, "Denumire produs", wxPoint(170, 5), wxSize(60, 40));
+    
+	txt1 = new wxStaticText(mainPane, wxID_ANY, "CNP", wxPoint(170, 5), wxSize(60, 40));
 	m_txt1 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(170, 50), wxSize(100, 20));
 
-	txt2 = new wxStaticText(mainPane, wxID_ANY, "Unitati", wxPoint(270, 5), wxSize(60, 40));
+	txt2 = new wxStaticText(mainPane, wxID_ANY, "Nume", wxPoint(270, 5), wxSize(60, 40));
 	m_txt2 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(270, 50), wxSize(100, 20));
 
-	txt3 = new wxStaticText(mainPane, wxID_ANY, "Kg", wxPoint(370, 5), wxSize(60, 40));
+	txt3 = new wxStaticText(mainPane, wxID_ANY, "Prenume", wxPoint(370, 5), wxSize(60, 40));
 	m_txt3 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(370, 50), wxSize(100, 20));
 
-	txt4 = new wxStaticText(mainPane, wxID_ANY, "Litri", wxPoint(470, 5), wxSize(60, 40));
+	txt4 = new wxStaticText(mainPane, wxID_ANY, "Serie", wxPoint(470, 5), wxSize(60, 40));
 	m_txt4 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(470, 50), wxSize(100, 20));
 
-	txt5 = new wxStaticText(mainPane, wxID_ANY, "Pret/unitate", wxPoint(570, 5), wxSize(100, 40));
+	txt5 = new wxStaticText(mainPane, wxID_ANY, "Numar", wxPoint(570, 5), wxSize(100, 40));
 	m_txt5 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
 
-    m_item_list = new wxListCtrl(mainPane, wxID_ANY, wxPoint(10, 90), wxSize(500, 300), wxLC_REPORT);
+	txt6 = new wxStaticText(mainPane, wxID_ANY, "Cetatenie", wxPoint(570, 5), wxSize(100, 40));
+	m_txt6 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
 
-    /*denumiri = { "ID", "Nume magazin","Judet","Oras", "Comuna", "Strada", "Numar", "Bloc", "Domeniu" };
+	txt7 = new wxStaticText(mainPane, wxID_ANY, "Sex", wxPoint(570, 5), wxSize(100, 40));
+	m_txt7 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
 
-    creareTabel(denumiri);*/
+	txt8 = new wxStaticText(mainPane, wxID_ANY, "LocNastere", wxPoint(570, 5), wxSize(100, 40));
+	m_txt8 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
+
+	txt9 = new wxStaticText(mainPane, wxID_ANY, "Domiciliu", wxPoint(570, 5), wxSize(100, 40));
+	m_txt9 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
+
+	txt10 = new wxStaticText(mainPane, wxID_ANY, "EmisaDe", wxPoint(570, 5), wxSize(100, 40));
+	m_txt10 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
+
+	txt11 = new wxStaticText(mainPane, wxID_ANY, "Valabilitate", wxPoint(570, 5), wxSize(100, 40));
+	m_txt11 = new wxTextCtrl(mainPane, wxID_ANY, "", wxPoint(570, 50), wxSize(100, 20));
+
+
+	m_btn1 = new wxButton(mainPane, 1001, "Click me!", wxPoint(10, 10), wxSize(150, 50));
+
 
 	primaPornire();
 
-    //sizer->Add(m_item_list, 1, wxEXPAND | wxALL, 10);
-    //mainPane->SetSizer(sizer);
 
 }
 
-
-/*void cMain::creareTabel(std::vector<std::string> den) {
-    for (unsigned i = 0; i < den.size(); ++i) {
-        coloane[i].SetId(i);
-        coloane[i].SetText(_(den[i]));
-        coloane[i].SetWidth(50);
-        m_item_list->InsertColumn(i, coloane[i]);
-    }
-}*/
 
 
 void cMain::creareTabelDB(int& exit, std::string queryCreare)
