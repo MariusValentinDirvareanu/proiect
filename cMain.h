@@ -15,7 +15,7 @@ class cMain : public wxFrame
 public:
 	cMain();
 	~cMain();
-	void creareTabel(std::vector<std::string> den);
+	//void creareTabel(std::vector<std::string> den);
 	void creareTabelDB(int& exit, std::string queryCreare);
 	void inserareDB(int& exit, std::string& queryInserare);
 	void stergereDB(int& exit, std::string& queryDelete);
@@ -27,11 +27,11 @@ public:
 	wxListCtrl* m_item_list = nullptr;
 	wxBoxSizer* sizer = nullptr;
 	wxPanel* mainPane = nullptr;
-	wxListItem coloane[100];
-	std::vector<std::string> denumiri;
+	//wxListItem coloane[100];
+	//std::vector<std::string> denumiri;
 	sqlite3* DB;
 	unsigned ok = 0;
-	std::string numeFisier = "stock.db";
+	std::string numeFisier = "persoane.db";
 	int exit = 0;
 	char* messaggeError;
 	wxStaticText* txt1 = nullptr;

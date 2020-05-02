@@ -31,9 +31,9 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Test", wxPoint(10, 10),wxSize(800, 
 
     m_item_list = new wxListCtrl(mainPane, wxID_ANY, wxPoint(10, 90), wxSize(500, 300), wxLC_REPORT);
 
-    denumiri = { "ID", "Nume magazin","Judet","Oras", "Comuna", "Strada", "Numar", "Bloc", "Domeniu" };
+    /*denumiri = { "ID", "Nume magazin","Judet","Oras", "Comuna", "Strada", "Numar", "Bloc", "Domeniu" };
 
-    creareTabel(denumiri);
+    creareTabel(denumiri);*/
 
 	primaPornire();
 
@@ -43,14 +43,14 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Test", wxPoint(10, 10),wxSize(800, 
 }
 
 
-void cMain::creareTabel(std::vector<std::string> den) {
+/*void cMain::creareTabel(std::vector<std::string> den) {
     for (unsigned i = 0; i < den.size(); ++i) {
         coloane[i].SetId(i);
         coloane[i].SetText(_(den[i]));
         coloane[i].SetWidth(50);
         m_item_list->InsertColumn(i, coloane[i]);
     }
-}
+}*/
 
 
 void cMain::creareTabelDB(int& exit, std::string queryCreare)
@@ -77,6 +77,7 @@ void cMain::inserareDB(int& exit, std::string& queryInserare)
 		sqlite3_free(messaggeError);
 	}
 	else {
+		std::cout << "Records created Successfully!" << std::endl;
 		wxMessageBox(wxT("Inregistrarea s-a facut cu succes!"), wxT("Succes!"), wxICON_INFORMATION);
 	}
 }
@@ -101,30 +102,19 @@ void cMain::primaPornire() {
 
 	if (std::filesystem::file_size(numeFisier) == 0)
 	{
-		std::string magazine = "CREATE TABLE magazine ("
-			"id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"numemagazin	TEXT NOT NULL UNIQUE,"
-			"judet	TEXT NOT NULL,"
-			"oras	TEXT,"
-			"comuna	TEXT,"
-			"strada	TEXT,"
-			"numar	TEXT,"
-			"bloc	TEXT,"
-			"domeniu	TEXT NOT NULL);"
-			"CREATE TABLE stock ("
-			"id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"denumire	TEXT NOT NULL,"
-			"unitati	INTEGER NOT NULL,"
-			"kg	REAL,"
-			"litri	REAL,"
-			"pretunitate	REAL NOT NULL);"
-			"CREATE TABLE COMENZI("
-			"ID	INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT UNIQUE,"
-			"IDMAGAZIN	INTEGER	NOT NULL,"
-			"IDPRODUS	INTEGER	NOT NULL,"
-			"UNITATI	INTEGER	NOT NULL,"
-			"FOREIGN KEY('idprodus') REFERENCES 'stock'('id'),"
-			"FOREIGN KEY('idmagazin') REFERENCES 'magazine'('id'));";
+		std::string magazine = "CREATE TABLE buletin ("
+			"ID	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+			"CNP	INTEGER NOT NULL UNIQUE,"
+			"Serie	TEXT NOT NULL,"
+			"Numar	INTEGER NOT NULL,"
+			"Nume	TEXT NOT NULL,"
+			"Prenume	TEXT NOT NULL,"
+			"Cetatenie	TEXT NOT NULL,"
+			"Sex	TEXT NOT NULL,"
+			"LocNastere	TEXT NOT NULL,"
+			"Domiciliu	TEXT NOT NULL,"
+			"EmisaDe	TEXT NOT NULL,"
+			"Valabilitate	TEXT NOT NULL);";
 
 		creareTabelDB(exit, magazine);
 	}
