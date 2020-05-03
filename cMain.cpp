@@ -106,7 +106,6 @@ void cMain::inserareDB(int& exit, std::string& queryInserare)
 		sqlite3_free(messaggeError);
 	}
 	else {
-		std::cout << "Records created Successfully!" << std::endl;
 		wxMessageBox(wxT("Inregistrarea s-a facut cu succes!"), wxT("Succes!"), wxICON_INFORMATION);
 	}
 }
