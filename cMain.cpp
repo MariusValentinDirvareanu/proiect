@@ -11,7 +11,7 @@ wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 wxEND_EVENT_TABLE()
 
 
-cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Test", wxPoint(10, 10),wxSize(800, 600))
+cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Inregistrare persoane", wxPoint(10, 10),wxSize(800, 600))
 {
 
 	wxSize s = wxSize(67, 20);
