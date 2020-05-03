@@ -10,6 +10,8 @@
 #include "wx/msgdlg.h"
 #include "wx/stattext.h"
 #include "wx/combobox.h"
+#include <algorithm>
+#include <iterator>
 
 
 class cMain : public wxFrame
@@ -26,6 +28,7 @@ public:
 	void cautarePersoana(wxCommandEvent& evt);
 	void stergerePersoana(wxCommandEvent& evt);
 	void modificarePersoana(wxCommandEvent& evt);
+	void curatare(wxCommandEvent& evt);
 
 public:
 	wxButton* buton_inregistrare = nullptr;
@@ -33,6 +36,7 @@ public:
 	wxButton* buton_stergere = nullptr;
 	wxButton* buton_generare = nullptr;
 	wxButton* buton_modificare = nullptr;
+	wxButton* buton_curatare = nullptr;
 	wxPanel* mainPane = nullptr;
 	sqlite3* DB;
 	unsigned ok = 0;
@@ -77,6 +81,9 @@ public:
 		"Constanta","Covasna","Dambovita","Dolj","Galati","Gorj","Harghita","Hunedoara","Ialomita","Iasi","Ilfov","Maramures","Mehedinti","Mures","Neamt","Olt",
 		"Prahova","Satu Mare","Salaj","Sibiu","Suceava","Teleorman","Timis","Tulcea","Vaslui","Valcea","Vrancea","Bucuresti","Bucuresti - Sector 1",
 		"Bucuresti - Sector 2","Bucuresti - Sector 3","Bucuresti - Sector 4","Bucuresti - Sector 5","Bucuresti - Sector 6","Calarasi","Giurgiu" };
+
+	std::vector<wxString>::iterator it;
+	wxArrayString alegeri;
 
 	wxDECLARE_EVENT_TABLE();
 };
